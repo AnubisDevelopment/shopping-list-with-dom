@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Shopping list example</title>
+        <style>
+          li {
+            margin-bottom: 10px;
+          }
+    
+          li button {
+            font-size: 12px;
+            margin-left: 20px;
+            color: #666;
+          }
+        </style>
+      </head>
+      <body>
+    
+        <h1>My shopping list</h1>
+    
+        <div>
+          <label for="item">Enter a new item:</label>
+          <input type="text" name="item" id="item" onfocus="myInputValue=''">
+          <button>Add item</button>
+        </div>
+    
+        <ul>
+    
+        </ul>
+    
+        <script>
+     // create reference to html elements
+    const myUl = document.querySelector('ul')
+    const myInput = document.querySelector('input')
+    const myButton = document.querySelector('button')
+    //function that returns value of input on button click
+    myButton.addEventListener("click", function() {
+      const inputValue = myInput.value
+        myInput.value = '';
+   
+    // create node elements
+    let myListItem = document.createElement('li')
+    let mySpan = document.createElement('span')
+    let myNodeButton = document.createElement('button')
+    //append span and button to li
+    myListItem.appendChild(myNodeButton)
+    myListItem.appendChild(mySpan)
+    //set text content of span to input value and text content of button to delete
+    mySpan.textContent = inputValue;
+    myNodeButton.textContent = 'Delete'
+    //append li to ul reference
+    myUl.appendChild(myListItem)
+    //attach even handler to delete button
+    myNodeButton.addEventListener("click", function() {
+      myListItem.remove()
+    });
+    //focus input element
+    myInput.focus()
+});
+        </script>
+      </body>
+</html>
